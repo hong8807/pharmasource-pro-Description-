@@ -205,10 +205,11 @@ export default function HomePage() {
 
           {/* Demo Account Info */}
           <div className="mt-8 text-center">
-            <p className="text-gray-400 text-sm">테스트 계정</p>
-            <p className="text-gray-300 text-sm mt-1">
-              관리자: hsj@huxeed.com / #yydf8n2j98
-            </p>
+            <p className="text-gray-400 text-sm font-semibold mb-2">테스트 계정</p>
+            <div className="space-y-1">
+              <p className="text-gray-300 text-sm">영업부: hosj2002@naver.com / test1234</p>
+              <p className="text-gray-300 text-sm">무역부: hosj2002@gmail.com / test1234</p>
+            </div>
           </div>
         </div>
       </div>
