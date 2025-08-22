@@ -129,8 +129,11 @@ function LoginForm() {
         </form>
 
         <div className="mt-6 text-center text-xs text-gray-500">
-          <p>테스트 계정</p>
-          <p>관리자: hsj@huxeed.com / #yydf8n2j98</p>
+          <p className="mb-2 font-semibold">테스트 계정</p>
+          <div className="space-y-1">
+            <p>영업부: hosj2002@naver.com / test1234</p>
+            <p>무역부: hosj2002@gmail.com / test1234</p>
+          </div>
         </div>
       </div>
     </div>
