@@ -91,7 +91,7 @@ export default function NewSourcingRequest() {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-huxeed-green mx-auto"></div>
           <p className="mt-4 text-gray-600">로딩 중...</p>
         </div>
       </div>
@@ -119,7 +119,7 @@ export default function NewSourcingRequest() {
                   name="product_name"
                   id="product_name"
                   required
-                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-huxeed-green focus:border-huxeed-green sm:text-sm"
                   value={formData.product_name}
                   onChange={handleChange}
                 />
@@ -134,7 +134,7 @@ export default function NewSourcingRequest() {
                   name="client_name"
                   id="client_name"
                   required
-                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-huxeed-green focus:border-huxeed-green sm:text-sm"
                   value={formData.client_name}
                   onChange={handleChange}
                 />
@@ -149,7 +149,7 @@ export default function NewSourcingRequest() {
                   name="usage_amount"
                   id="usage_amount"
                   placeholder="예: 연간 100kg"
-                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-huxeed-green focus:border-huxeed-green sm:text-sm"
                   value={formData.usage_amount}
                   onChange={handleChange}
                 />
@@ -164,7 +164,7 @@ export default function NewSourcingRequest() {
                   name="existing_manufacturer"
                   id="existing_manufacturer"
                   placeholder="현재 사용 중인 제조원"
-                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-huxeed-green focus:border-huxeed-green sm:text-sm"
                   value={formData.existing_manufacturer}
                   onChange={handleChange}
                 />
@@ -178,7 +178,7 @@ export default function NewSourcingRequest() {
                   name="requirements"
                   id="requirements"
                   rows={4}
-                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-huxeed-green focus:border-huxeed-green sm:text-sm"
                   placeholder="특별 요구사항, 품질 규격, 인증 요구사항 등"
                   value={formData.requirements}
                   onChange={handleChange}
@@ -198,8 +198,8 @@ export default function NewSourcingRequest() {
                     file:mr-4 file:py-2 file:px-4
                     file:rounded-md file:border-0
                     file:text-sm file:font-semibold
-                    file:bg-indigo-50 file:text-indigo-700
-                    hover:file:bg-indigo-100"
+                    file:bg-green-50 file:text-huxeed-green
+                    hover:file:bg-green-100"
                   onChange={handleFileChange}
                 />
                 <p className="mt-1 text-sm text-gray-500">
@@ -217,14 +217,14 @@ export default function NewSourcingRequest() {
                 <button
                   type="button"
                   onClick={() => router.back()}
-                  className="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-huxeed-green"
                 >
                   취소
                 </button>
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:bg-gray-400"
+                  className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-huxeed-green hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-huxeed-green disabled:bg-gray-400"
                 >
                   {submitting ? '제출 중...' : '소싱 의뢰'}
                 </button>

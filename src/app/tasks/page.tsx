@@ -75,7 +75,7 @@ export default function TasksPage() {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-huxeed-green mx-auto"></div>
           <p className="mt-4 text-gray-600">로딩 중...</p>
         </div>
       </div>
@@ -127,7 +127,7 @@ export default function TasksPage() {
                       </p>
                       <button
                         onClick={() => assignTask(task.id)}
-                        className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-2 rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-200 font-medium text-sm"
+                        className="w-full bg-gradient-to-r from-huxeed-green to-green-600 text-white px-4 py-2 rounded-lg hover:from-green-600 hover:to-green-700 transition-all duration-200 font-medium text-sm"
                       >
                         TASK 할당받기
                       </button>

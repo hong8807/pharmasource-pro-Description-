@@ -68,7 +68,7 @@ export default function SalesDashboard() {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-huxeed-green mx-auto"></div>
           <p className="mt-4 text-gray-600">로딩 중...</p>
         </div>
       </div>
@@ -115,7 +115,7 @@ export default function SalesDashboard() {
               <div className="mt-4 pt-4 border-t border-gray-200">
                 <div className="flex justify-between">
                   <span className="text-gray-900 font-medium">전체</span>
-                  <span className="font-bold text-indigo-600">{dashboardData?.stats.total || 0}</span>
+                  <span className="font-bold text-huxeed-green">{dashboardData?.stats.total || 0}</span>
                 </div>
               </div>
             </div>
@@ -126,7 +126,7 @@ export default function SalesDashboard() {
             <h2 className="text-lg font-medium text-gray-900 mb-4">빠른 의뢰</h2>
             <button
               onClick={() => router.push('/sourcing/new')}
-              className="w-full bg-indigo-600 text-white rounded-md py-2 px-4 hover:bg-indigo-700 transition"
+              className="w-full bg-huxeed-green text-white rounded-md py-2 px-4 hover:bg-green-600 transition"
             >
               새 소싱 의뢰 작성
             </button>

@@ -149,7 +149,7 @@ export default function SearchBar({
                     key={index}
                     onClick={() => handleSuggestionClick(suggestion)}
                     className={`px-4 py-3 cursor-pointer transition-colors ${
-                      index === selectedIndex ? 'bg-purple-50 border-l-4 border-purple-500' : 'hover:bg-gray-50'
+                      index === selectedIndex ? 'bg-green-50 border-l-4 border-huxeed-green' : 'hover:bg-gray-50'
                     }`}
                   >
                     <div className="text-sm font-medium text-gray-900">

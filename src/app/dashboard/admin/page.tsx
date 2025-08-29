@@ -82,7 +82,7 @@ export default function AdminDashboard() {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-huxeed-green mx-auto"></div>
           <p className="mt-4 text-gray-600">로딩 중...</p>
         </div>
       </div>
@@ -137,7 +137,7 @@ export default function AdminDashboard() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
               <div className="bg-gray-50 rounded-lg p-4">
                 <h3 className="text-sm font-medium text-gray-700 mb-2">PharmaCompass 제품</h3>
-                <p className="text-2xl font-bold text-blue-600">
+                <p className="text-2xl font-bold text-huxeed-green">
                   {crawlingStatus.pharmacompassProducts.toLocaleString()}
                 </p>
               </div>
@@ -173,7 +173,7 @@ export default function AdminDashboard() {
                 className={`px-6 py-3 rounded-lg text-white font-medium transition-colors ${
                   crawlingStatus.isRunning
                     ? 'bg-gray-400 cursor-not-allowed'
-                    : 'bg-blue-600 hover:bg-blue-700 active:bg-blue-800'
+                    : 'bg-huxeed-green hover:bg-green-600 active:bg-green-700'
                 }`}
               >
                 {crawlingStatus.isRunning ? (

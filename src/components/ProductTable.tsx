@@ -103,7 +103,7 @@ export default function ProductTable({
   return (
     <div className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
       {/* 테이블 헤더 */}
-      <div className="bg-gradient-to-r from-blue-50 to-purple-50 px-6 py-4 border-b border-gray-200">
+      <div className="bg-gradient-to-r from-green-50 to-green-100 px-6 py-4 border-b border-gray-200">
         <h3 className="text-lg font-semibold text-gray-800">제품 검색 결과</h3>
         <p className="text-sm text-gray-600 mt-1">총 {displayProducts.length}개의 제품이 발견되었습니다</p>
       </div>
@@ -168,7 +168,7 @@ export default function ProductTable({
                   <td className="px-6 py-5 text-center">
                     <button
                       onClick={() => toggleProductExpansion(product.id)}
-                      className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 shadow-md hover:shadow-lg"
+                      className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-huxeed-green to-green-600 hover:from-green-600 hover:to-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-all duration-200 shadow-md hover:shadow-lg"
                     >
                       {expandedProducts.has(product.id) ? (
                         <>
@@ -191,7 +191,7 @@ export default function ProductTable({
                 {expandedProducts.has(product.id) && (
                   <tr>
                     <td colSpan={4} className="px-0 py-0">
-                      <div className="bg-gradient-to-r from-blue-50 to-purple-50 border-t border-gray-200">
+                      <div className="bg-gradient-to-r from-green-50 to-green-100 border-t border-gray-200">
                         <div className="px-8 py-4">
                           <h4 className="text-lg font-semibold text-gray-800 mb-3">
                             {product.name} - 공급업체 목록
@@ -273,7 +273,7 @@ export default function ProductTable({
                                               if (source === 'CPHI Online') {
                                                 return 'bg-gradient-to-r from-blue-100 to-cyan-100 text-blue-700 border-blue-200 hover:from-blue-200 hover:to-cyan-200'
                                               } else if (source === 'PharmaCompass') {
-                                                return 'bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700 border-purple-200 hover:from-purple-200 hover:to-pink-200'
+                                                return 'bg-gradient-to-r from-huxeed-green/10 to-green-100 text-huxeed-green border-huxeed-green/20 hover:from-huxeed-green/20 hover:to-green-200'
                                               } else if (source === 'PharmaOffer') {
                                                 return 'bg-gradient-to-r from-green-100 to-emerald-100 text-green-700 border-green-200 hover:from-green-200 hover:to-emerald-200'
                                               } else {

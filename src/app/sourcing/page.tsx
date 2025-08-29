@@ -103,7 +103,7 @@ export default function SourcingList() {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-huxeed-green mx-auto"></div>
           <p className="mt-4 text-gray-600">로딩 중...</p>
         </div>
       </div>
@@ -127,7 +127,7 @@ export default function SourcingList() {
           <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
             <Link
               href="/sourcing/new"
-              className="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
+              className="inline-flex items-center justify-center rounded-md border border-transparent bg-huxeed-green px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-huxeed-green focus:ring-offset-2 sm:w-auto"
             >
               새 소싱 의뢰
             </Link>
@@ -184,7 +184,7 @@ export default function SourcingList() {
                             <div className="flex items-center justify-end gap-3">
                               <Link
                                 href={`/sourcing/${request.id}`}
-                                className="text-indigo-600 hover:text-indigo-900"
+                                className="text-huxeed-green hover:text-green-600"
                               >
                                 상세보기
                               </Link>

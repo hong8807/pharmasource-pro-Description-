@@ -497,7 +497,7 @@ export default function TaskDetailPage() {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-huxeed-green mx-auto"></div>
           <p className="mt-4 text-gray-600">로딩 중...</p>
         </div>
       </div>
@@ -716,13 +716,13 @@ export default function TaskDetailPage() {
                       onChange={(e) => setNewProgress(e.target.value)}
                       onKeyPress={(e) => e.key === 'Enter' && !e.shiftKey && addProgress()}
                       placeholder="진행 내역을 입력하세요..."
-                      className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                      className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-huxeed-green focus:border-transparent"
                       disabled={submitting}
                     />
                     <button
                       onClick={addProgress}
                       disabled={submitting || uploadingFiles || !newProgress.trim()}
-                      className="px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="px-4 py-2 bg-gradient-to-r from-huxeed-green to-green-600 text-white rounded-lg hover:from-green-600 hover:to-green-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {uploadingFiles ? (
                         <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
@@ -734,7 +734,7 @@ export default function TaskDetailPage() {
                   <div className="flex items-center justify-between">
                     <button
                       onClick={() => setShowQuoteForm(true)}
-                      className="flex items-center gap-2 text-sm text-purple-600 hover:text-purple-700 font-medium"
+                      className="flex items-center gap-2 text-sm text-huxeed-green hover:text-green-600 font-medium"
                     >
                       <Plus className="w-4 h-4" />
                       견적 정보 추가
@@ -768,7 +768,7 @@ export default function TaskDetailPage() {
                   )}
                 </div>
               ) : (
-                <div className="p-6 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg border border-purple-200">
+                <div className="p-6 bg-gradient-to-r from-green-50 to-green-100 rounded-lg border border-huxeed-green/20">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-lg font-medium text-gray-900 flex items-center gap-2">
                       <DollarSign className="w-5 h-5" />
@@ -790,7 +790,7 @@ export default function TaskDetailPage() {
                           type="text"
                           value={quoteForm.manufacturer_name}
                           onChange={(e) => setQuoteForm({...quoteForm, manufacturer_name: e.target.value})}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-huxeed-green focus:border-transparent"
                           placeholder="예: ABC Pharma"
                         />
                       </div>
@@ -800,7 +800,7 @@ export default function TaskDetailPage() {
                           type="text"
                           value={quoteForm.supplier_name}
                           onChange={(e) => setQuoteForm({...quoteForm, supplier_name: e.target.value})}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-huxeed-green focus:border-transparent"
                           placeholder="제조사와 동일시 빈칸"
                         />
                       </div>
@@ -810,7 +810,7 @@ export default function TaskDetailPage() {
                           <select
                             value={quoteForm.quote_currency}
                             onChange={(e) => setQuoteForm({...quoteForm, quote_currency: e.target.value})}
-                            className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                            className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-huxeed-green focus:border-transparent"
                           >
                             <option value="USD">USD</option>
                             <option value="EUR">EUR</option>
@@ -822,7 +822,7 @@ export default function TaskDetailPage() {
                             type="number"
                             value={quoteForm.quote_price}
                             onChange={(e) => setQuoteForm({...quoteForm, quote_price: e.target.value})}
-                            className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                            className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-huxeed-green focus:border-transparent"
                             placeholder="0.00"
                             step="0.01"
                           />
@@ -834,7 +834,7 @@ export default function TaskDetailPage() {
                           type="text"
                           value={quoteForm.quote_lead_time}
                           onChange={(e) => setQuoteForm({...quoteForm, quote_lead_time: e.target.value})}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-huxeed-green focus:border-transparent"
                           placeholder="예: 30-45일"
                         />
                       </div>
@@ -848,7 +848,7 @@ export default function TaskDetailPage() {
                             type="checkbox"
                             checked={quoteForm.has_gmp}
                             onChange={(e) => setQuoteForm({...quoteForm, has_gmp: e.target.checked})}
-                            className="rounded text-purple-600 focus:ring-purple-500"
+                            className="rounded text-huxeed-green focus:ring-huxeed-green"
                           />
                           <span className="text-sm">GMP</span>
                         </label>
@@ -857,7 +857,7 @@ export default function TaskDetailPage() {
                             type="checkbox"
                             checked={quoteForm.has_dmf}
                             onChange={(e) => setQuoteForm({...quoteForm, has_dmf: e.target.checked})}
-                            className="rounded text-purple-600 focus:ring-purple-500"
+                            className="rounded text-huxeed-green focus:ring-huxeed-green"
                           />
                           <span className="text-sm">DMF</span>
                         </label>
@@ -866,7 +866,7 @@ export default function TaskDetailPage() {
                             type="checkbox"
                             checked={quoteForm.has_cep}
                             onChange={(e) => setQuoteForm({...quoteForm, has_cep: e.target.checked})}
-                            className="rounded text-purple-600 focus:ring-purple-500"
+                            className="rounded text-huxeed-green focus:ring-huxeed-green"
                           />
                           <span className="text-sm">CEP</span>
                         </label>
@@ -875,7 +875,7 @@ export default function TaskDetailPage() {
                             type="checkbox"
                             checked={quoteForm.has_iso}
                             onChange={(e) => setQuoteForm({...quoteForm, has_iso: e.target.checked})}
-                            className="rounded text-purple-600 focus:ring-purple-500"
+                            className="rounded text-huxeed-green focus:ring-huxeed-green"
                           />
                           <span className="text-sm">ISO</span>
                         </label>
@@ -888,7 +888,7 @@ export default function TaskDetailPage() {
                         type="text"
                         value={quoteForm.certificate_notes}
                         onChange={(e) => setQuoteForm({...quoteForm, certificate_notes: e.target.value})}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-huxeed-green focus:border-transparent"
                         placeholder="예: GMP 2025년 갱신 예정"
                       />
                     </div>
@@ -898,7 +898,7 @@ export default function TaskDetailPage() {
                       <textarea
                         value={quoteForm.description}
                         onChange={(e) => setQuoteForm({...quoteForm, description: e.target.value})}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-huxeed-green focus:border-transparent"
                         rows={3}
                         placeholder="견적 진행 상황을 설명해주세요..."
                       />
@@ -907,7 +907,7 @@ export default function TaskDetailPage() {
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">첨부파일</label>
                       <div className="space-y-2">
-                        <label className="flex items-center justify-center gap-2 px-4 py-3 border-2 border-dashed border-gray-300 rounded-lg hover:border-purple-400 cursor-pointer transition-colors">
+                        <label className="flex items-center justify-center gap-2 px-4 py-3 border-2 border-dashed border-gray-300 rounded-lg hover:border-huxeed-green cursor-pointer transition-colors">
                           <Upload className="w-5 h-5 text-gray-400" />
                           <span className="text-sm text-gray-600">견적서, 성적서, 자격증명서 업로드</span>
                           <input
@@ -944,7 +944,7 @@ export default function TaskDetailPage() {
                       <button
                         onClick={submitQuote}
                         disabled={submitting || uploadingFiles}
-                        className="flex-1 px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+                        className="flex-1 px-4 py-2 bg-gradient-to-r from-huxeed-green to-green-600 text-white rounded-lg hover:from-green-600 hover:to-green-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed font-medium"
                       >
                         {uploadingFiles ? '파일 업로드 중...' : '견적 정보 저장'}
                       </button>
@@ -965,8 +965,8 @@ export default function TaskDetailPage() {
               {task.progress && task.progress.length > 0 ? (
                 task.progress.map((item) => (
                   <div key={item.id} className="flex gap-3">
-                    <div className="flex-shrink-0 w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
-                      <CheckCircle className="w-4 h-4 text-purple-600" />
+                    <div className="flex-shrink-0 w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                      <CheckCircle className="w-4 h-4 text-huxeed-green" />
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
@@ -978,7 +978,7 @@ export default function TaskDetailPage() {
                       {editingProgressId === item.id ? (
                         editingQuoteInfo ? (
                           // Edit quote info
-                          <div className="w-full p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg border border-purple-200">
+                          <div className="w-full p-4 bg-gradient-to-r from-green-50 to-green-100 rounded-lg border border-huxeed-green/20">
                             <div className="space-y-3">
                               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                 <div>
@@ -987,7 +987,7 @@ export default function TaskDetailPage() {
                                     type="text"
                                     value={quoteForm.manufacturer_name}
                                     onChange={(e) => setQuoteForm({...quoteForm, manufacturer_name: e.target.value})}
-                                    className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                                    className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-huxeed-green focus:border-transparent"
                                   />
                                 </div>
                                 <div>
@@ -996,7 +996,7 @@ export default function TaskDetailPage() {
                                     type="text"
                                     value={quoteForm.supplier_name}
                                     onChange={(e) => setQuoteForm({...quoteForm, supplier_name: e.target.value})}
-                                    className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                                    className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-huxeed-green focus:border-transparent"
                                     placeholder="제조사와 동일시 빈칸"
                                   />
                                 </div>
@@ -1006,7 +1006,7 @@ export default function TaskDetailPage() {
                                     <select
                                       value={quoteForm.quote_currency}
                                       onChange={(e) => setQuoteForm({...quoteForm, quote_currency: e.target.value})}
-                                      className="px-2 py-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                                      className="px-2 py-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-huxeed-green focus:border-transparent"
                                     >
                                       <option value="USD">USD</option>
                                       <option value="EUR">EUR</option>
@@ -1018,7 +1018,7 @@ export default function TaskDetailPage() {
                                       type="number"
                                       value={quoteForm.quote_price}
                                       onChange={(e) => setQuoteForm({...quoteForm, quote_price: e.target.value})}
-                                      className="flex-1 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                                      className="flex-1 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-huxeed-green focus:border-transparent"
                                       step="0.01"
                                     />
                                   </div>
@@ -1029,7 +1029,7 @@ export default function TaskDetailPage() {
                                     type="text"
                                     value={quoteForm.quote_lead_time}
                                     onChange={(e) => setQuoteForm({...quoteForm, quote_lead_time: e.target.value})}
-                                    className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                                    className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-huxeed-green focus:border-transparent"
                                     placeholder="예: 30-45일"
                                   />
                                 </div>
@@ -1043,7 +1043,7 @@ export default function TaskDetailPage() {
                                       type="checkbox"
                                       checked={quoteForm.has_gmp}
                                       onChange={(e) => setQuoteForm({...quoteForm, has_gmp: e.target.checked})}
-                                      className="rounded text-purple-600 focus:ring-purple-500"
+                                      className="rounded text-huxeed-green focus:ring-huxeed-green"
                                     />
                                     <span className="text-xs">GMP</span>
                                   </label>
@@ -1052,7 +1052,7 @@ export default function TaskDetailPage() {
                                       type="checkbox"
                                       checked={quoteForm.has_dmf}
                                       onChange={(e) => setQuoteForm({...quoteForm, has_dmf: e.target.checked})}
-                                      className="rounded text-purple-600 focus:ring-purple-500"
+                                      className="rounded text-huxeed-green focus:ring-huxeed-green"
                                     />
                                     <span className="text-xs">DMF</span>
                                   </label>
@@ -1061,7 +1061,7 @@ export default function TaskDetailPage() {
                                       type="checkbox"
                                       checked={quoteForm.has_cep}
                                       onChange={(e) => setQuoteForm({...quoteForm, has_cep: e.target.checked})}
-                                      className="rounded text-purple-600 focus:ring-purple-500"
+                                      className="rounded text-huxeed-green focus:ring-huxeed-green"
                                     />
                                     <span className="text-xs">CEP</span>
                                   </label>
@@ -1070,7 +1070,7 @@ export default function TaskDetailPage() {
                                       type="checkbox"
                                       checked={quoteForm.has_iso}
                                       onChange={(e) => setQuoteForm({...quoteForm, has_iso: e.target.checked})}
-                                      className="rounded text-purple-600 focus:ring-purple-500"
+                                      className="rounded text-huxeed-green focus:ring-huxeed-green"
                                     />
                                     <span className="text-xs">ISO</span>
                                   </label>
@@ -1083,7 +1083,7 @@ export default function TaskDetailPage() {
                                   type="text"
                                   value={quoteForm.certificate_notes}
                                   onChange={(e) => setQuoteForm({...quoteForm, certificate_notes: e.target.value})}
-                                  className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                                  className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-huxeed-green focus:border-transparent"
                                   placeholder="예: GMP 2025년 갱신 예정"
                                 />
                               </div>
@@ -1093,7 +1093,7 @@ export default function TaskDetailPage() {
                                 <textarea
                                   value={quoteForm.description}
                                   onChange={(e) => setQuoteForm({...quoteForm, description: e.target.value})}
-                                  className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                                  className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-huxeed-green focus:border-transparent"
                                   rows={2}
                                 />
                               </div>
@@ -1124,7 +1124,7 @@ export default function TaskDetailPage() {
                               type="text"
                               value={editingProgressText}
                               onChange={(e) => setEditingProgressText(e.target.value)}
-                              className="flex-1 px-2 py-1 border border-gray-300 rounded focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                              className="flex-1 px-2 py-1 border border-gray-300 rounded focus:ring-2 focus:ring-huxeed-green focus:border-transparent"
                             />
                             <button
                               onClick={saveProgressEdit}

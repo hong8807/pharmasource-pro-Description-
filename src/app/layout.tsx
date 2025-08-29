@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import { AuthProvider } from '@/components/AuthProvider'
 import Header from '@/components/Header'
+import LayoutWrapper from '@/components/LayoutWrapper'
 
 export const metadata: Metadata = {
   title: 'PharmaSource Pro - 의약품 원료 소싱 플랫폼',
@@ -15,12 +16,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body className="min-h-screen bg-gray-50">
+      <body className="min-h-screen">
         <AuthProvider>
           <Header />
-          <main className="min-h-[calc(100vh-4rem)]">
+          <LayoutWrapper>
             {children}
-          </main>
+          </LayoutWrapper>
         </AuthProvider>
       </body>
     </html>

@@ -88,7 +88,7 @@ export default function TradeDashboard() {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-huxeed-green mx-auto"></div>
           <p className="mt-4 text-gray-600">로딩 중...</p>
         </div>
       </div>
@@ -136,7 +136,7 @@ export default function TradeDashboard() {
                     </p>
                     <button
                       onClick={() => handleAssignTask(task.id)}
-                      className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
+                      className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-huxeed-green hover:bg-green-600"
                     >
                       TASK 할당받기
                     </button>
@@ -173,7 +173,7 @@ export default function TradeDashboard() {
                     </p>
                     <Link 
                       href={`/tasks/${task.id}`}
-                      className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
+                      className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-huxeed-green hover:bg-green-600"
                     >
                       상세보기
                     </Link>

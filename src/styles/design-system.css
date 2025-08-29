@@ -1,12 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 /* PharmaSource Pro 디자인 시스템 */
+/* 회사 웹사이트 스타일을 기반으로 한 전용 디자인 변수 */
+
 :root {
-  /* ===== 브랜드 색상 팔레트 (Brand Color Palette) ===== */
+  /* ===== 색상 팔레트 (Color Palette) ===== */
   
-  /* 주요 색상 (Primary Colors) - 회사 브랜드 기반 */
+  /* 주요 색상 (Primary Colors) */
   --color-primary: #95c11f;           /* 생동감 있는 녹색 - 메인 브랜드 색상 */
   --color-primary-dark: #7da419;      /* 주요 색상의 어두운 버전 */
   --color-primary-light: #b5d147;     /* 주요 색상의 밝은 버전 */
@@ -106,9 +104,11 @@
   --transition-slow: 0.5s ease;
   --transition-header: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* 헤더 전환 */
   
-  /* Tailwind와 호환을 위한 기본 변수 유지 */
-  --background: var(--color-bg-primary);
-  --foreground: var(--color-text-primary);
+  /* ===== Z-Index 레벨 ===== */
+  --z-dropdown: 50;
+  --z-header: 100;
+  --z-modal: 200;
+  --z-tooltip: 300;
 }
 
 /* ===== 다크모드 지원 ===== */
@@ -121,82 +121,7 @@
     --color-bg-beige: #2a2a2a;
     --color-border-light: #333333;
     --color-border-medium: #404040;
-    
-    /* Tailwind 호환성 */
-    --background: var(--color-bg-primary);
-    --foreground: var(--color-text-primary);
   }
-}
-
-/* ===== 기본 스타일 리셋 ===== */
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: var(--font-family-primary);
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-relaxed);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* ===== 타이포그래피 기본 설정 ===== */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-family-display);
-  font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-tight);
-  color: var(--color-text-primary);
-  margin-bottom: var(--spacing-md);
-}
-
-h1 {
-  font-size: var(--font-size-4xl);
-  font-weight: var(--font-weight-extrabold);
-}
-
-h2 {
-  font-size: var(--font-size-3xl);
-}
-
-h3 {
-  font-size: var(--font-size-2xl);
-}
-
-h4 {
-  font-size: var(--font-size-xl);
-}
-
-h5 {
-  font-size: var(--font-size-lg);
-}
-
-h6 {
-  font-size: var(--font-size-base);
-}
-
-p {
-  margin-bottom: var(--spacing-md);
-  color: var(--color-text-primary);
-}
-
-/* ===== 링크 스타일 ===== */
-a {
-  color: inherit;
-  text-decoration: none;
-  transition: var(--transition-fast);
-}
-
-a:hover {
-  color: var(--color-primary);
 }
 
 /* ===== 유틸리티 클래스 ===== */
@@ -216,32 +141,21 @@ a:hover {
 }
 
 .header-solid {
-  background: var(--color-bg-primary);
-  color: var(--color-text-primary);
-  box-shadow: var(--shadow-header);
+  background: transparent;
+  color: var(--color-text-light);
   transition: var(--transition-header);
 }
 
-/* 버튼 시스템 */
-.btn-base {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.75rem 1.5rem;
-  border-radius: var(--border-radius-lg);
-  font-weight: var(--font-weight-medium);
-  font-size: var(--font-size-sm);
-  transition: var(--transition-normal);
-  cursor: pointer;
-  border: 1px solid transparent;
-  text-decoration: none;
-  gap: var(--spacing-sm);
-}
-
+/* 버튼 기본 스타일 */
 .btn-primary {
   background-color: var(--color-primary);
   color: var(--color-text-light);
-  border-color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius-lg);
+  font-weight: var(--font-weight-medium);
+  transition: var(--transition-normal);
+  cursor: pointer;
 }
 
 .btn-primary:hover {
@@ -254,7 +168,12 @@ a:hover {
 .btn-secondary {
   background-color: var(--color-bg-beige);
   color: var(--color-text-brown);
-  border-color: var(--color-border-brown);
+  border: 1px solid var(--color-border-brown);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius-lg);
+  font-weight: var(--font-weight-medium);
+  transition: var(--transition-normal);
+  cursor: pointer;
 }
 
 .btn-secondary:hover {
@@ -268,26 +187,29 @@ a:hover {
   background: transparent;
   color: inherit;
   border: none;
+  transition: var(--transition-fast);
+  cursor: pointer;
 }
 
 .btn-ghost:hover {
   color: var(--color-primary);
 }
 
-/* 카드 시스템 */
-.card-primary {
-  background: var(--color-bg-primary);
-  border: 1px solid var(--color-border-light);
-  border-radius: var(--border-radius-xl);
-  box-shadow: var(--shadow-md);
-  overflow: hidden;
-  transition: var(--transition-normal);
+/* 텍스트 스타일 */
+.text-primary {
+  color: var(--color-text-primary);
 }
 
-.card-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-xl);
-  border-color: var(--color-primary);
+.text-secondary {
+  color: var(--color-text-secondary);
+}
+
+.text-muted {
+  color: var(--color-text-muted);
+}
+
+.text-brand {
+  color: var(--color-primary);
 }
 
 /* 비주얼 섹션 */
@@ -329,27 +251,132 @@ a:hover {
   border: none;
 }
 
-/* 텍스트 유틸리티 */
-.text-primary {
-  color: var(--color-text-primary);
+/* 푸터 스타일 */
+.footer-section {
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  color: var(--color-text-light);
 }
 
-.text-secondary {
-  color: var(--color-text-secondary);
+.footer-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--color-bg-overlay-dark);
+  z-index: 1;
 }
 
-.text-muted {
-  color: var(--color-text-muted);
+.footer-content {
+  position: relative;
+  z-index: 2;
+  padding: var(--spacing-4xl) var(--spacing-xl);
 }
 
-.text-brand {
+/* 카드 스타일 */
+.card-primary {
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  transition: var(--transition-normal);
+}
+
+.card-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--color-primary-alpha);
+}
+
+/* 그리드 시스템 */
+.grid-responsive {
+  display: grid;
+  gap: var(--spacing-lg);
+}
+
+@media (min-width: 640px) {
+  .grid-responsive {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-responsive {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1470px) {
+  .grid-responsive {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* 애니메이션 */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-in-right {
+  opacity: 0;
+  transform: translateX(-30px);
+  animation: slideInRight 0.6s ease forwards;
+}
+
+@keyframes slideInRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 인터랙티브 요소 */
+.interactive-element {
+  transition: var(--transition-fast);
+}
+
+.interactive-element:hover {
   color: var(--color-primary);
+  cursor: pointer;
+}
+
+/* 링크 스타일 */
+.link-primary {
+  color: var(--color-text-primary);
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+.link-primary:hover {
+  color: var(--color-primary);
+}
+
+.link-brand {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+.link-brand:hover {
+  color: var(--color-primary-dark);
 }
 
 /* 반응형 타이포그래피 */
 .heading-xl {
   font-size: var(--font-size-2xl);
-  font-weight: var(--font-weight-extrabold);
+  font-weight: var(--font-weight-bold);
   line-height: var(--line-height-tight);
 }
 
@@ -395,30 +422,6 @@ a:hover {
   }
 }
 
-/* 그리드 시스템 */
-.grid-responsive {
-  display: grid;
-  gap: var(--spacing-lg);
-}
-
-@media (min-width: 640px) {
-  .grid-responsive {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  .grid-responsive {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (min-width: 1470px) {
-  .grid-responsive {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
 /* 섹션 여백 */
 .section-padding {
   padding: var(--spacing-3xl) 0;
@@ -436,32 +439,8 @@ a:hover {
   }
 }
 
-/* 애니메이션 */
-.fade-in-up {
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeInUp 0.6s ease forwards;
-}
-
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* 인터랙티브 요소 */
-.interactive-element {
-  transition: var(--transition-fast);
-}
-
-.interactive-element:hover {
-  color: var(--color-primary);
-  cursor: pointer;
-}
-
 /* 포커스 상태 */
-.focus-ring:focus {
+.focus-ring {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
@@ -483,11 +462,4 @@ a:hover {
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: var(--color-primary-dark);
-}
-
-/* Tailwind CSS와 호환성 보장 */
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
 }

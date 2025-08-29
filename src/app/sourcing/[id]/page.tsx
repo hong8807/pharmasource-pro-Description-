@@ -312,7 +312,7 @@ export default function SourcingDetailPage() {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-huxeed-green mx-auto"></div>
           <p className="mt-4 text-gray-600">로딩 중...</p>
           <p className="mt-2 text-xs text-gray-500">
             Auth: {loading ? '확인중' : '완료'} | Data: {dataLoading ? '로딩중' : '완료'}
@@ -381,7 +381,7 @@ export default function SourcingDetailPage() {
                     type="text"
                     value={editForm.product_name}
                     onChange={(e) => setEditForm({...editForm, product_name: e.target.value})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-huxeed-green focus:border-transparent"
                   />
                 ) : (
                   sourcing.product_name
@@ -459,7 +459,7 @@ export default function SourcingDetailPage() {
                         type="text"
                         value={editForm.client_name}
                         onChange={(e) => setEditForm({...editForm, client_name: e.target.value})}
-                        className="w-full px-2 py-1 border border-gray-300 rounded focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                        className="w-full px-2 py-1 border border-gray-300 rounded focus:ring-2 focus:ring-huxeed-green focus:border-transparent"
                       />
                     ) : (
                       <p className="text-base text-gray-900">{sourcing.client_name}</p>
@@ -477,7 +477,7 @@ export default function SourcingDetailPage() {
                           type="text"
                           value={editForm.usage_amount}
                           onChange={(e) => setEditForm({...editForm, usage_amount: e.target.value})}
-                          className="w-full px-2 py-1 border border-gray-300 rounded focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full px-2 py-1 border border-gray-300 rounded focus:ring-2 focus:ring-huxeed-green focus:border-transparent"
                         />
                       ) : (
                         <p className="text-base text-gray-900">{sourcing.usage_amount}</p>
@@ -496,7 +496,7 @@ export default function SourcingDetailPage() {
                           type="text"
                           value={editForm.existing_manufacturer}
                           onChange={(e) => setEditForm({...editForm, existing_manufacturer: e.target.value})}
-                          className="w-full px-2 py-1 border border-gray-300 rounded focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full px-2 py-1 border border-gray-300 rounded focus:ring-2 focus:ring-huxeed-green focus:border-transparent"
                         />
                       ) : (
                         <p className="text-base text-gray-900">{sourcing.existing_manufacturer}</p>
@@ -563,7 +563,7 @@ export default function SourcingDetailPage() {
                       <textarea
                         value={editForm.requirements}
                         onChange={(e) => setEditForm({...editForm, requirements: e.target.value})}
-                        className="w-full px-2 py-1 border border-gray-300 rounded focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                        className="w-full px-2 py-1 border border-gray-300 rounded focus:ring-2 focus:ring-huxeed-green focus:border-transparent"
                         rows={3}
                       />
                     ) : (
@@ -632,7 +632,7 @@ export default function SourcingDetailPage() {
                         )}
                         {editMode && (
                           <div>
-                            <label className="flex items-center gap-2 px-4 py-2 border-2 border-dashed border-gray-300 rounded-lg hover:border-purple-400 cursor-pointer transition-colors">
+                            <label className="flex items-center gap-2 px-4 py-2 border-2 border-dashed border-gray-300 rounded-lg hover:border-huxeed-green cursor-pointer transition-colors">
                               <Plus className="w-4 h-4 text-gray-400" />
                               <span className="text-sm text-gray-600">파일 추가</span>
                               <input
@@ -685,7 +685,7 @@ export default function SourcingDetailPage() {
               {sourcing.sourcing_tasks?.[0] && (taskStatus === 'in_progress' || taskStatus === 'assigned') && (
                 <button
                   onClick={() => setShowingProgressInput(!showingProgressInput)}
-                  className="text-sm text-purple-600 hover:text-purple-700 font-medium"
+                  className="text-sm text-huxeed-green hover:text-green-600 font-medium"
                 >
                   {showingProgressInput ? '취소' : '+ 내역 추가'}
                 </button>
@@ -702,13 +702,13 @@ export default function SourcingDetailPage() {
                     onChange={(e) => setNewProgress(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && !e.shiftKey && addProgress()}
                     placeholder="진행 내역을 입력하세요..."
-                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-huxeed-green focus:border-transparent"
                     disabled={submitting}
                   />
                   <button
                     onClick={addProgress}
                     disabled={submitting || !newProgress.trim()}
-                    className="px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="px-4 py-2 bg-gradient-to-r from-huxeed-green to-green-600 text-white rounded-lg hover:from-green-600 hover:to-green-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <Send className="w-5 h-5" />
                   </button>
@@ -720,8 +720,8 @@ export default function SourcingDetailPage() {
               {sourcing.progress && sourcing.progress.length > 0 ? (
                 sourcing.progress.map((item) => (
                   <div key={item.id} className="flex gap-3">
-                    <div className="flex-shrink-0 w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
-                      <CheckCircle className="w-4 h-4 text-purple-600" />
+                    <div className="flex-shrink-0 w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                      <CheckCircle className="w-4 h-4 text-huxeed-green" />
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">

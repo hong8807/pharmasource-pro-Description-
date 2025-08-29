@@ -1,10 +1,14 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { createClient } from '@/lib/supabase/client'
 import { useAuth } from '@/components/AuthProvider'
+import { ShimmerButton } from '@/components/ui/shimmer-button'
+import { MagicCard } from '@/components/ui/magic-card'
+import { FlickeringGrid } from '@/components/ui/flickering-grid'
 
 export default function HomePage() {
   const router = useRouter()
@@ -13,7 +17,32 @@ export default function HomePage() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
+  const [currentSlide, setCurrentSlide] = useState(0)
   
+  // 배경 이미지 슬라이드 데이터
+  const backgroundSlides = useMemo(() => [
+    {
+      image: 'https://cdn.imweb.me/thumbnail/20250729/e73d7609ec784.jpg',
+      title: 'Huxeed',
+      subtitle: 'New Seeds for Human & Health',
+      description: '글로벌 의약품 원료 소싱 자동화 플랫폼',
+      textColor: 'white' // 어두운 이미지용
+    },
+    {
+      image: 'https://cdn.imweb.me/thumbnail/20250729/b3c117410f0ce.jpg',
+      title: 'Innovation',
+      subtitle: 'Advanced Healthcare Solutions',
+      description: '혁신적인 헬스케어 솔루션을 통한 미래 건강',
+      textColor: 'dark' // 밝은 이미지용
+    },
+    {
+      image: 'https://cdn.imweb.me/thumbnail/20250729/3f1a67d830a2b.jpg',
+      title: 'Excellence',
+      subtitle: 'Quality & Trust',
+      description: '품질과 신뢰를 바탕으로 한 우수한 서비스',
+      textColor: 'white' // 어두운 이미지용
+    }
+  ], [])
 
   useEffect(() => {
     if (!authLoading && user && userData) {
@@ -27,13 +56,44 @@ export default function HomePage() {
     }
   }, [user, userData, router, authLoading])
 
+  // 배경 이미지 슬라이드 효과
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % backgroundSlides.length)
+    }, 5000)
+    return () => clearInterval(timer)
+  }, [backgroundSlides.length])
+
+  // 현재 슬라이드의 텍스트 색상을 전역 상태로 관리
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const currentTextColor = backgroundSlides[currentSlide].textColor
+      document.documentElement.setAttribute('data-slide-text-color', currentTextColor)
+    }
+  }, [currentSlide, backgroundSlides])
+
   // 인증 상태 확인 중일 때 로딩 표시
   if (authLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-        <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
-          <p className="mt-4 text-white">로딩 중...</p>
+      <div className="min-h-screen flex items-center justify-center bg-black relative overflow-hidden">
+        {/* Background Images Slideshow */}
+        <div className="absolute inset-0">
+          {backgroundSlides.map((slide, index) => (
+            <div
+              key={index}
+              className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${
+                index === currentSlide ? 'opacity-100' : 'opacity-0'
+              }`}
+              style={{
+                backgroundImage: `url(${slide.image})`,
+              }}
+            />
+          ))}
+          <div className="absolute inset-0 bg-black/60" />
+        </div>
+        <div className="relative text-center">
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-huxeed-green"></div>
+          <p className="mt-4 text-white font-medium">로딩 중...</p>
         </div>
       </div>
     )
@@ -114,134 +174,205 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-      {/* Animated background */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-32 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-        <div className="absolute -bottom-40 -left-32 w-80 h-80 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-        <div className="absolute top-40 left-32 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+    <div className="min-h-screen relative overflow-hidden">
+      {/* Background Images Slideshow */}
+      <div className="absolute inset-0">
+        {backgroundSlides.map((slide, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${
+              index === currentSlide ? 'opacity-100' : 'opacity-0'
+            }`}
+            style={{
+              backgroundImage: `url(${slide.image})`,
+            }}
+          />
+        ))}
+        {/* Dark overlay for readability */}
+        <div className="absolute inset-0 bg-black/50" />
       </div>
 
       {/* Grid pattern overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-transparent via-purple-900/20 to-transparent"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-transparent via-black/20 to-transparent"></div>
 
-      {/* Content */}
-      <div className="relative min-h-screen flex flex-col items-center justify-center px-4">
-        <div className="w-full max-w-md">
-          {/* Logo and Title */}
-          <div className="text-center mb-8">
-            <h1 className="text-5xl font-bold text-white mb-2 tracking-tight">
-              PharmaSource
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400"> Pro</span>
-            </h1>
-            <p className="text-gray-300 text-lg">
-              글로벌 의약품 원료 소싱 플랫폼
-            </p>
-          </div>
-
-          {/* Login Card */}
-          <div className="backdrop-blur-xl bg-white/10 rounded-2xl shadow-2xl border border-white/20 p-8">
-            <form onSubmit={handleLogin} className="space-y-6">
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-200 mb-2">
-                  이메일
-                </label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent backdrop-blur-xl transition duration-200"
-                  placeholder="이메일을 입력하세요"
+      {/* Content Container - 완전 반응형 */}
+      <div className="relative min-h-screen flex flex-col lg:flex-row items-center justify-center">
+        
+        {/* Hero Content - 적절한 크기 */}
+        <div className="flex-1 flex flex-col justify-center px-4 sm:px-6 md:px-8 lg:px-12 text-white w-full lg:w-auto">
+          <div className="max-w-2xl mx-auto lg:mx-0">
+            {/* Logo and Company Info */}
+            <div className="mb-5 md:mb-6 text-center lg:text-left">
+              <div className="flex items-center justify-center lg:justify-start mb-3">
+                <Image 
+                  src="https://cdn.imweb.me/thumbnail/20250812/1d3b49c004b15.png"
+                  alt="Huxeed Logo"
+                  width={150}
+                  height={48}
+                  className="h-8 sm:h-10 w-auto mr-3"
+                  style={{
+                    filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.5))',
+                  }}
+                  priority
                 />
               </div>
+              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 leading-tight text-white drop-shadow-lg">
+                {backgroundSlides[currentSlide].title}
+              </h1>
+              <p className="text-sm sm:text-base md:text-lg mb-2 text-huxeed-green font-semibold drop-shadow-md">
+                {backgroundSlides[currentSlide].subtitle}
+              </p>
+              <p className="text-xs sm:text-sm text-white drop-shadow-md">
+                {backgroundSlides[currentSlide].description}
+              </p>
+            </div>
 
-              <div>
-                <label htmlFor="password" className="block text-sm font-medium text-gray-200 mb-2">
-                  비밀번호
-                </label>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  autoComplete="current-password"
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent backdrop-blur-xl transition duration-200"
-                  placeholder="비밀번호를 입력하세요"
-                />
-              </div>
-
-              {error && (
-                <div className="rounded-lg bg-red-500/10 border border-red-500/20 p-4">
-                  <p className="text-sm text-red-400">{error}</p>
+            {/* Features - 컴팩트한 크기 */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 mb-6 lg:mb-0">
+              <div className="flex items-center space-x-2">
+                <div className="w-6 h-6 bg-huxeed-green/30 rounded-full flex items-center justify-center border border-white/20">
+                  <div className="w-2 h-2 bg-huxeed-green rounded-full"></div>
                 </div>
-              )}
-
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-medium text-white transition duration-300 ease-out rounded-lg shadow-xl group hover:ring-2 hover:ring-offset-2 hover:ring-purple-500"
-              >
-                <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-purple-600 via-purple-700 to-pink-700"></span>
-                <span className="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-pink-500 rounded-full opacity-30 group-hover:rotate-90 ease"></span>
-                <span className="relative">{loading ? '로그인 중...' : '로그인'}</span>
-              </button>
-
-              <div className="flex items-center justify-between text-sm">
-                <Link href="/signup" className="text-purple-400 hover:text-purple-300 transition">
-                  계정이 없으신가요?
-                </Link>
-                <a href="#" className="text-gray-400 hover:text-gray-300 transition">
-                  비밀번호 찾기
-                </a>
+                <span className="text-xs text-white font-medium drop-shadow-sm">글로벌 API 데이터베이스</span>
               </div>
-            </form>
-          </div>
-
-          {/* Demo Account Info */}
-          <div className="mt-8 text-center">
-            <p className="text-gray-400 text-sm font-semibold mb-2">테스트 계정</p>
-            <div className="space-y-1">
-              <p className="text-gray-300 text-sm">영업부: hosj2002@naver.com / test1234</p>
-              <p className="text-gray-300 text-sm">무역부: hosj2002@gmail.com / test1234</p>
+              <div className="flex items-center space-x-2">
+                <div className="w-6 h-6 bg-huxeed-green/30 rounded-full flex items-center justify-center border border-white/20">
+                  <div className="w-2 h-2 bg-huxeed-green rounded-full"></div>
+                </div>
+                <span className="text-xs text-white font-medium drop-shadow-sm">자동화된 소싱 시스템</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-6 h-6 bg-huxeed-green/30 rounded-full flex items-center justify-center border border-white/20">
+                  <div className="w-2 h-2 bg-huxeed-green rounded-full"></div>
+                </div>
+                <span className="text-xs text-white font-medium drop-shadow-sm">실시간 시장 분석</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-6 h-6 bg-huxeed-green/30 rounded-full flex items-center justify-center border border-white/20">
+                  <div className="w-2 h-2 bg-huxeed-green rounded-full"></div>
+                </div>
+                <span className="text-xs text-white font-medium drop-shadow-sm">품질 보증 시스템</span>
+              </div>
             </div>
           </div>
         </div>
+
+        {/* Login Form - 더 컴팩트한 크기 */}
+        <div className="flex-shrink-0 w-full max-w-xs sm:max-w-sm lg:max-w-sm mx-auto lg:mx-0 px-4 lg:px-4 mt-8 lg:mt-0">
+          <MagicCard className="relative bg-black/80 backdrop-blur-xl border border-white/20 shadow-2xl">
+            {/* FlickeringGrid Background */}
+            <div className="absolute inset-0 rounded-xl overflow-hidden">
+              <FlickeringGrid
+                className="size-full opacity-40"
+                squareSize={2}
+                gridGap={4}
+                color="rgb(149, 193, 31)"
+                maxOpacity={0.3}
+                flickerChance={0.1}
+              />
+            </div>
+            
+            <div className="relative px-5 py-5 lg:px-6 lg:py-6">
+              {/* Form Header */}
+              <div className="text-center mb-5">
+                <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-2 drop-shadow-md">
+                  PharmaSource Pro
+                </h2>
+                <p className="text-white/90 drop-shadow-sm text-xs sm:text-sm">
+                  의약품 원료 소싱 플랫폼에 로그인하세요
+                </p>
+              </div>
+
+              <form onSubmit={handleLogin} className="space-y-4">
+                <div>
+                  <label htmlFor="email" className="block text-sm font-semibold text-white mb-2 drop-shadow-sm">
+                    이메일
+                  </label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    autoComplete="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full px-4 py-3 rounded-lg border border-white/30 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-huxeed-green focus:border-huxeed-green transition duration-200 bg-white/95 text-sm"
+                    placeholder="이메일을 입력하세요"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="password" className="block text-sm font-semibold text-white mb-2 drop-shadow-sm">
+                    비밀번호
+                  </label>
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    autoComplete="current-password"
+                    required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full px-4 py-3 rounded-lg border border-white/30 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-huxeed-green focus:border-huxeed-green transition duration-200 bg-white/95 text-sm"
+                    placeholder="비밀번호를 입력하세요"
+                  />
+                </div>
+
+                {error && (
+                  <div className="rounded-lg bg-red-50 border border-red-200 p-4">
+                    <p className="text-sm text-red-600 font-medium">{error}</p>
+                  </div>
+                )}
+
+                <ShimmerButton
+                  type="submit"
+                  disabled={loading}
+                  className="w-full py-3 text-white font-semibold rounded-lg text-sm"
+                  background={`linear-gradient(135deg, #95c11f 0%, #7da319 100%)`}
+                  shimmerColor="#ffffff"
+                  shimmerDuration="2s"
+                  borderRadius="8px"
+                >
+                  {loading ? '로그인 중...' : '로그인'}
+                </ShimmerButton>
+
+                <div className="flex items-center justify-between text-sm pt-1">
+                  <Link href="/signup" className="text-huxeed-green hover:text-huxeed-green/80 transition font-medium drop-shadow-sm">
+                    계정이 없으신가요?
+                  </Link>
+                  <a href="#" className="text-white/80 hover:text-white transition font-medium drop-shadow-sm">
+                    비밀번호 찾기
+                  </a>
+                </div>
+              </form>
+
+              {/* Demo Account Info */}
+              <div className="mt-4 text-center">
+                <p className="text-xs font-semibold mb-1 text-white drop-shadow-sm">테스트 계정</p>
+                <div className="space-y-0.5 text-xs text-white/80">
+                  <p>영업부: hosj2002@naver.com / test1234</p>
+                  <p>무역부: hosj2002@gmail.com / test1234</p>
+                </div>
+              </div>
+            </div>
+          </MagicCard>
+
+          {/* Slide indicators */}
+          <div className="flex justify-center mt-4 space-x-2">
+            {backgroundSlides.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  index === currentSlide
+                    ? 'bg-huxeed-green w-6'
+                    : 'bg-white/50 hover:bg-white/70'
+                }`}
+              />
+            ))}
+          </div>
+        </div>
       </div>
-
-      <style jsx>{`
-        @keyframes blob {
-          0% {
-            transform: translate(0px, 0px) scale(1);
-          }
-          33% {
-            transform: translate(30px, -50px) scale(1.1);
-          }
-          66% {
-            transform: translate(-20px, 20px) scale(0.9);
-          }
-          100% {
-            transform: translate(0px, 0px) scale(1);
-          }
-        }
-
-        .animate-blob {
-          animation: blob 7s infinite;
-        }
-
-        .animation-delay-2000 {
-          animation-delay: 2s;
-        }
-
-        .animation-delay-4000 {
-          animation-delay: 4s;
-        }
-      `}</style>
     </div>
   )
 }
